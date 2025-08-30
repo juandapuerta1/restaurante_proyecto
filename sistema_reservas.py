@@ -15,7 +15,27 @@ class SistemaReservas(Restaurante):
     
     def _verificar_disponibilidad_hora(self, hora):
         """Método específico de esta clase para verificar disponibilidad"""
-        return hora in self.horarios_disponibles
+        # Primero verificar que la hora esté en el rango disponible
+        if hora not in self.horarios_disponibles:
+            return False
+        
+        # Contar cuántas reservas ya existen para esa hora específica
+        reservas_por_hora = sum(1 for reserva in self.reservas if reserva.hora == hora)
+        
+        # Definir capacidad máxima por hora (5 reservas)
+        capacidad_maxima = 5
+        
+        # Retornar True si hay espacio disponible
+        return reservas_por_hora < capacidad_maxima
+    
+    def mostrar_disponibilidad_por_hora(self):
+        """Método para mostrar cuántas reservas hay por cada hora"""
+        print(f"\n=== DISPONIBILIDAD POR HORA ===")
+        for hora in self.horarios_disponibles:
+            reservas_por_hora = sum(1 for reserva in self.reservas if reserva.hora == hora)
+            espacios_disponibles = 5 - reservas_por_hora
+            estado = "COMPLETO" if espacios_disponibles == 0 else f"{espacios_disponibles} espacios"
+            print(f"Hora {hora}:00 - {estado}")
     
     def mostrar_horarios_disponibles(self):
         """Método específico de esta clase"""

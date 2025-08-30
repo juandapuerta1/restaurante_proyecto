@@ -10,6 +10,7 @@ def mostrar_menu_principal():
     print("3. Eliminar Reserva")
     print("4. Modificar Reserva")
     print("5. Mostrar Horarios Disponibles")
+    print("6. Ver Disponibilidad por Hora")
     print("0. Salir")
     print("="*50)
 
@@ -124,6 +125,8 @@ def main():
             modificar_reserva(sistema)
         elif opcion == "5":
             sistema.mostrar_horarios_disponibles()
+        elif opcion == "6":
+            sistema.mostrar_disponibilidad_por_hora()
         elif opcion == "0":
             print("\n¡Gracias por usar el Sistema de Reservas!")
             break
