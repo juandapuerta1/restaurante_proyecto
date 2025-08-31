@@ -1,4 +1,4 @@
-from sistema_reservas import SistemaReservas
+from src.sistema_reservas import SistemaReservas
 
 def mostrar_menu_principal():
     """Función para mostrar el menú principal"""
