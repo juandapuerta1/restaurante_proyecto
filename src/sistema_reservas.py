@@ -1,139 +1,72 @@
-from sistema_reservas import SistemaReservas
+from src.restaurante import Restaurante
 
-def mostrar_menu_principal():
-    """Función para mostrar el menú principal"""
-    print("\n" + "="*50)
-    print("    SISTEMA DE RESERVAS - RESTAURANTE")
-    print("="*50)
-    print("1. Realizar Reserva")
-    print("2. Validar Reservas")
-    print("3. Eliminar Reserva")
-    print("4. Modificar Reserva")
-    print("5. Mostrar Horarios Disponibles")
-    print("6. Ver Disponibilidad por Hora")
-    print("0. Salir")
-    print("="*50)
-
-def realizar_reserva(sistema):
-    """Función para realizar una nueva reserva"""
-    print("\n--- REALIZAR RESERVA ---")
+class SistemaReservas(Restaurante):
+    def __init__(self, nombre):
+        super().__init__(nombre)
+        self.horarios_disponibles = list(range(12, 23))  # 12 PM a 10 PM
     
-    # Solicitar nombre completo
-    nombre = input("Ingrese el nombre completo: ").strip()
-    if not nombre:
-        print("El nombre no puede estar vacío.")
-        return
-    
-    # Solicitar hora
-    hora_input = input("Ingrese la hora (12-22): ").strip()
-    if not hora_input.isdigit():
-        print("Por favor ingrese un número válido para la hora.")
-        return
-    
-    hora = int(hora_input)
-    if hora < 12 or hora > 22:
-        print("La hora debe estar entre 12 y 22 (12 PM a 10 PM).")
-        return
-    
-    # Solicitar método de pago
-    print("\nMétodos de pago disponibles:")
-    print("1. efectivo")
-    print("2. transferencia")
-    print("3. tarjeta credito")
-    
-    metodo_numero = input("Ingrese el número del método de pago (1, 2 o 3): ").strip()
-    
-    if metodo_numero == "1":
-        metodo = "efectivo"
-    elif metodo_numero == "2":
-        metodo = "transferencia"
-    elif metodo_numero == "3":
-        metodo = "tarjeta credito"
-    else:
-        print("Número de método de pago no válido. Debe ser 1, 2 o 3.")
-        return
-    
-    # Crear la reserva
-    if sistema.agregar_reserva(nombre, hora, metodo):
-        print(f"\n¡Reserva creada exitosamente!")
-        print(f"ID de reserva: {sistema.contador_id - 1}")
-    else:
-        print("No se pudo crear la reserva. Verifique los datos.")
-
-def validar_reservas(sistema):
-    """Función para mostrar todas las reservas"""
-    print("\n--- VALIDAR RESERVAS ---")
-    sistema.validar_reservas()
-
-def eliminar_reserva(sistema):
-    """Función para eliminar una reserva"""
-    print("\n--- ELIMINAR RESERVA ---")
-    
-    if not sistema.reservas:
-        print("No hay reservas para eliminar.")
-        return
-    
-    # Mostrar reservas existentes
-    sistema.validar_reservas()
-    
-    id_input = input("\nIngrese el ID de la reserva a eliminar: ").strip()
-    if not id_input.isdigit():
-        print("Por favor ingrese un número válido para el ID.")
-        return
-    
-    id_reserva = int(id_input)
-    sistema.eliminar_reserva_por_id(id_reserva)
-
-def modificar_reserva(sistema):
-    """Función para modificar una reserva"""
-    print("\n--- MODIFICAR RESERVA ---")
-    
-    if not sistema.reservas:
-        print("No hay reservas para modificar.")
-        return
-    
-    # Mostrar reservas existentes
-    sistema.validar_reservas()
-    
-    posicion_input = input("\nIngrese la posición de la reserva a modificar: ").strip()
-    if not posicion_input.isdigit():
-        print("Por favor ingrese un número válido para la posición.")
-        return
-    
-    posicion = int(posicion_input)
-    sistema.modificar_reserva(posicion)
-
-def main():
-    """Función principal del programa"""
-    # Crear instancia del sistema de reservas
-    sistema = SistemaReservas("Mi Restaurante")
-    
-    print("¡Bienvenido al Sistema de Reservas!")
-    
-    while True:
-        mostrar_menu_principal()
-        
-        opcion = input("\nSeleccione una opción: ").strip()
-        
-        if opcion == "1":
-            realizar_reserva(sistema)
-        elif opcion == "2":
-            validar_reservas(sistema)
-        elif opcion == "3":
-            eliminar_reserva(sistema)
-        elif opcion == "4":
-            modificar_reserva(sistema)
-        elif opcion == "5":
-            sistema.mostrar_horarios_disponibles()
-        elif opcion == "6":
-            sistema.mostrar_disponibilidad_por_hora()
-        elif opcion == "0":
-            print("\n¡Gracias por usar el Sistema de Reservas!")
-            break
+    def agregar_reserva(self, nombre_completo, hora, metodo_pago):
+        """Sobrescribe el método de la clase padre con validaciones adicionales"""
+        if self._verificar_disponibilidad_hora(hora):
+            return super().agregar_reserva(nombre_completo, hora, metodo_pago)
         else:
-            print("Opción no válida. Por favor seleccione una opción del menú.")
+            print(f"La hora {hora} no está disponible para reservas.")
+            return False
+    
+    def _verificar_disponibilidad_hora(self, hora):
+        """Método específico de esta clase para verificar disponibilidad"""
+        # Primero verificar que la hora esté en el rango disponible
+        if hora not in self.horarios_disponibles:
+            return False
         
-        input("\nPresione Enter para continuar...")
-
-if __name__ == "__main__":
-    main()
+        # Contar cuántas reservas ya existen para esa hora específica
+        reservas_por_hora = sum(1 for reserva in self.reservas if reserva.hora == hora)
+        
+        # Definir capacidad máxima por hora (5 reservas)
+        capacidad_maxima = 5
+        
+        # Retornar True si hay espacio disponible
+        return reservas_por_hora < capacidad_maxima
+    
+    def mostrar_disponibilidad_por_hora(self):
+        """Método para mostrar cuántas reservas hay por cada hora"""
+        print(f"\n=== DISPONIBILIDAD POR HORA ===")
+        for hora in self.horarios_disponibles:
+            reservas_por_hora = sum(1 for reserva in self.reservas if reserva.hora == hora)
+            espacios_disponibles = 5 - reservas_por_hora
+            estado = "COMPLETO" if espacios_disponibles == 0 else f"{espacios_disponibles} espacios"
+            print(f"Hora {hora}:00 - {estado}")
+    
+    def mostrar_horarios_disponibles(self):
+        """Método específico de esta clase"""
+        print(f"Horarios disponibles: {self.horarios_disponibles}")
+    
+    def validar_reservas(self):
+        """Sobrescribe el método de la clase padre con información adicional"""
+        if not self.reservas:
+            print("No hay reservas registradas.")
+            return
+        
+        print(f"\n=== RESERVAS EXISTENTES EN {self.nombre.upper()} ===")
+        print(f"Total de reservas: {len(self.reservas)}")
+        for i, reserva in enumerate(self.reservas):
+            print(f"Posición {i}: {reserva}")
+    
+    def estadisticas_reservas(self):
+        """Método específico de esta clase para mostrar estadísticas"""
+        if not self.reservas:
+            print("No hay reservas para mostrar estadísticas.")
+            return
+        
+        print(f"\n=== ESTADÍSTICAS DE RESERVAS ===")
+        print(f"Total de reservas: {len(self.reservas)}")
+        
+        # Contar métodos de pago
+        metodos_count = {}
+        for reserva in self.reservas:
+            metodo = reserva.metodo_pago
+            metodos_count[metodo] = metodos_count.get(metodo, 0) + 1
+        
+        print("Métodos de pago utilizados:")
+        for metodo, cantidad in metodos_count.items():
+            print(f"  {metodo}: {cantidad} reservas")
