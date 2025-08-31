@@ -1,4 +1,4 @@
-from src.reserva import Reserva  # Cambia la ruta de importación para reflejar la nueva ubicación
+from src.reserva import Reserva
 
 class Restaurante:
     def __init__(self, nombre):
