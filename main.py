@@ -95,13 +95,13 @@ def modificar_reserva(sistema):
     # Mostrar reservas existentes
     sistema.validar_reservas()
     
-    posicion_input = input("\nIngrese la posición de la reserva a modificar: ").strip()
-    if not posicion_input.isdigit():
-        print("Por favor ingrese un número válido para la posición.")
+    id_input = input("\nIngrese el ID de la reserva a modificar: ").strip()
+    if not id_input.isdigit():
+        print("Por favor ingrese un número válido para el ID.")
         return
     
-    posicion = int(posicion_input)
-    sistema.modificar_reserva(posicion)
+    id_reserva = int(id_input)
+    sistema.modificar_reserva_por_id(id_reserva)
 
 def main():
     """Función principal del programa"""
