@@ -1,3 +1,5 @@
+from sistema_reservas import SistemaReservas
+
 def mostrar_menu_principal():
     """Función para mostrar el menú principal"""
     print("\n" + "="*50)
