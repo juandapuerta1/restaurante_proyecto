@@ -1,4 +1,4 @@
-from sistema_reservas import SistemaReservas
+from src.sistema_reservas import SistemaReservas
 
 def mostrar_menu_principal():
     """Función para mostrar el menú principal"""
@@ -10,6 +10,8 @@ def mostrar_menu_principal():
     print("3. Eliminar Reserva")
     print("4. Modificar Reserva")
     print("5. Mostrar Horarios Disponibles")
+    print("6. Ver Disponibilidad por Hora")
+    print("7. Ver Estadísticas de Reservas")
     print("0. Salir")
     print("="*50)
 
@@ -57,7 +59,7 @@ def realizar_reserva(sistema):
         print(f"\n¡Reserva creada exitosamente!")
         print(f"ID de reserva: {sistema.contador_id - 1}")
     else:
-        print("No se pudo crear la reserva. Verifique los datos.")
+        print("No se pudo crear la reserva por falta de espacio en el horario seleccionado.")
 
 def validar_reservas(sistema):
     """Función para mostrar todas las reservas"""
@@ -124,6 +126,10 @@ def main():
             modificar_reserva(sistema)
         elif opcion == "5":
             sistema.mostrar_horarios_disponibles()
+        elif opcion == "6":
+            sistema.mostrar_disponibilidad_por_hora()
+        elif opcion == "7":
+            sistema.estadisticas_reservas()
         elif opcion == "0":
             print("\n¡Gracias por usar el Sistema de Reservas!")
             break
