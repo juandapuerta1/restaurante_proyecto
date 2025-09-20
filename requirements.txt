@@ -1,4 +1,4 @@
 # Dependencias para el proyecto de restaurante con Neon
 sqlalchemy==2.0.23
-psycopg2-binary==2.9.9
+psycopg[binary]
 python-dotenv==1.0.0
