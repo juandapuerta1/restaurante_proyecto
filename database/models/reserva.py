@@ -24,8 +24,12 @@ class Reserva(Base):
     fecha_reserva = Column(DateTime(timezone=True), nullable=False)
     hora_reserva = Column(String(10), nullable=False)  # "19:30"
     numero_personas = Column(Integer, nullable=False, default=1)
-    metodo_pago = Column(String(50), nullable=False)  # "efectivo", "transferencia", "tarjeta credito"
-    estado = Column(String(20), default="pendiente")  # "pendiente", "confirmada", "cancelada", "completada"
+    metodo_pago = Column(
+        String(50), nullable=False
+    )  # "efectivo", "transferencia", "tarjeta credito"
+    estado = Column(
+        String(20), default="pendiente"
+    )  # "pendiente", "confirmada", "cancelada", "completada"
     observaciones = Column(Text, nullable=True)
     fecha_creacion = Column(DateTime(timezone=True), server_default=func.now())
     fecha_edicion = Column(DateTime(timezone=True), onupdate=func.now())
@@ -37,9 +41,7 @@ class Reserva(Base):
     restaurante_id = Column(
         UUID(as_uuid=True), ForeignKey("restaurantes.id_restaurante"), nullable=False
     )
-    mesa_id = Column(
-        UUID(as_uuid=True), ForeignKey("mesas.id_mesa"), nullable=True
-    )
+    mesa_id = Column(UUID(as_uuid=True), ForeignKey("mesas.id_mesa"), nullable=True)
 
     # Relaciones
     usuario = relationship("Usuario", back_populates="reservas")
