@@ -77,7 +77,8 @@ class SistemaRestaurante:
         )
         return False
 
-    # =================== MENÚ PRINCIPAL ===================
+        # =================== MENÚ PRINCIPAL ===================
+
     def mostrar_menu_principal_autenticado(self) -> None:
         """Menú principal después del login"""
         print("\n" + "=" * 50)
@@ -89,12 +90,288 @@ class SistemaRestaurante:
             print("Administrador")
         print("=" * 50)
         print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
         print("0. Cerrar Sesión")
         print("=" * 50)
 
-    # =================== MENÚ USUARIOS ===================
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
+        # =================== MENÚ PRINCIPAL ===================
+
+    def mostrar_menu_principal_autenticado(self) -> None:
+        """Menú principal después del login"""
+        print("\n" + "=" * 50)
+        print("    SISTEMA DE GESTION DE RESTAURANTE")
+        print("=" * 50)
+        print(f"Usuario: {self.usuario_actual.nombre}")
+        print(f"Email: {self.usuario_actual.email}")
+        if self.usuario_actual.es_admin:
+            print("Administrador")
+        print("=" * 50)
+        print("1. Gestión de Usuarios")
+        print("2. Gestión de Reservas")
+        print("3. Gestión de Restaurantes")
+        print("4. Gestión de Menú")
+        print("5. Gestión de Categorías")
+        print("6. Gestión de Mesas")
+        print("0. Cerrar Sesión")
+        print("=" * 50)
+
     def mostrar_menu_usuarios(self) -> None:
-        """Submenú de gestión de usuarios"""
         while True:
             print("\n--- GESTIÓN DE USUARIOS ---")
             print("1. Crear Usuario")
@@ -122,7 +399,7 @@ class SistemaRestaurante:
             elif opcion == "7":
                 self.crear_usuario_admin()
             elif opcion == "0":
-                break
+                break  # <- aquí sales al menú principal
             else:
                 print("ERROR: Opción inválida. Intente nuevamente.")
 
@@ -243,7 +520,7 @@ class SistemaRestaurante:
 
             if cambios:
                 usuario_actualizado = self.usuario_crud.actualizar_usuario(
-                    usuario.id, **cambios
+                    usuario.id_usuario, **cambios
                 )
                 print(f"EXITO: Usuario actualizado: {usuario_actualizado}")
             else:
@@ -265,7 +542,7 @@ class SistemaRestaurante:
                 .lower()
             )
             if confirmacion == "s":
-                if self.usuario_crud.eliminar_usuario(usuario.id):
+                if self.usuario_crud.eliminar_usuario(usuario.id_usuario):
                     print("EXITO: Usuario eliminado exitosamente.")
                 else:
                     print("ERROR: Error al eliminar el usuario.")
@@ -307,6 +584,16 @@ class SistemaRestaurante:
             opcion = input("\nSeleccione una opción: ").strip()
             if opcion == "1":
                 self.mostrar_menu_usuarios()
+            elif opcion == "2":
+                self.mostrar_menu_reservas()
+            elif opcion == "3":
+                self.mostrar_menu_restaurantes()
+            elif opcion == "4":
+                self.mostrar_menu_menu()
+            elif opcion == "5":
+                self.mostrar_menu_categorias()
+            elif opcion == "6":
+                self.mostrar_menu_mesas()
             elif opcion == "0":
                 print("\n¡Hasta luego!")
                 break
