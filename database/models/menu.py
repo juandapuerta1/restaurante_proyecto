@@ -28,7 +28,6 @@ class Menu(Base):
     fecha_creacion = Column(DateTime(timezone=True), server_default=func.now())
     fecha_edicion = Column(DateTime(timezone=True), onupdate=func.now())
 
-    # Claves foráneas
     categoria_id = Column(
         UUID(as_uuid=True), ForeignKey("categorias.id_categoria"), nullable=False
     )
@@ -36,7 +35,6 @@ class Menu(Base):
         UUID(as_uuid=True), ForeignKey("restaurantes.id_restaurante"), nullable=False
     )
 
-    # Relaciones
     categoria = relationship("Categoria", back_populates="menus")
     restaurante = relationship("Restaurante", back_populates="menus")
 

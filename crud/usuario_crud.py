@@ -15,7 +15,6 @@ class UsuarioCRUD:
     def __init__(self, db: Session):
         self.db = db
 
-    # ------------------ VALIDACIONES ------------------
     def _validar_email(self, email: str) -> bool:
         pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         return re.match(pattern, email) is not None
@@ -28,7 +27,6 @@ class UsuarioCRUD:
         pattern = r"^[a-zA-Z0-9_]{3,20}$"
         return re.match(pattern, nombre_usuario) is not None
 
-    # ------------------ CREAR ------------------
     def crear_usuario(
         self,
         nombre: str,
@@ -83,7 +81,6 @@ class UsuarioCRUD:
         self.db.refresh(usuario)
         return usuario
 
-    # ------------------ OBTENER ------------------
     def obtener_usuario(self, usuario_id: UUID) -> Optional[Usuario]:
         return (
             self.db.query(Usuario)
@@ -119,7 +116,6 @@ class UsuarioCRUD:
             .all()
         )
 
-    # ------------------ AUTENTICAR ------------------
     def autenticar_usuario(
         self, nombre_usuario: str, contrasena: str
     ) -> Optional[Usuario]:
@@ -132,7 +128,6 @@ class UsuarioCRUD:
             return usuario
         return None
 
-    # ------------------ ACTUALIZAR ------------------
     def actualizar_usuario(self, usuario_id: UUID, **kwargs) -> Optional[Usuario]:
         usuario = self.obtener_usuario(usuario_id)
         if not usuario:
@@ -176,7 +171,6 @@ class UsuarioCRUD:
         self.db.refresh(usuario)
         return usuario
 
-    # ------------------ ELIMINAR ------------------
     def eliminar_usuario(self, usuario_id: UUID) -> bool:
         usuario = self.obtener_usuario(usuario_id)
         if usuario:
@@ -194,7 +188,6 @@ class UsuarioCRUD:
         self.db.refresh(usuario)
         return usuario
 
-    # ------------------ EXTRA ------------------
     def obtener_usuarios_admin(self) -> List[Usuario]:
         return (
             self.db.query(Usuario)

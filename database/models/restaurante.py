@@ -29,12 +29,10 @@ class Restaurante(Base):
     fecha_creacion = Column(DateTime(timezone=True), server_default=func.now())
     fecha_edicion = Column(DateTime(timezone=True), onupdate=func.now())
 
-    # Claves foráneas
     usuario_admin_id = Column(
         UUID(as_uuid=True), ForeignKey("usuarios.id_usuario"), nullable=False
     )
 
-    # Relaciones
     usuario_admin = relationship("Usuario", back_populates="restaurantes")
     mesas = relationship("Mesa", back_populates="restaurante")
     reservas = relationship("Reserva", back_populates="restaurante")

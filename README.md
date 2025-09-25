@@ -1,206 +1,228 @@
-<<<<<<< HEAD
-# Sistema de Reservas para Restaurante
+# Sistema de Gestión de Restaurante
 
-Este proyecto implementa un sistema completo de gestión de reservas para un restaurante utilizando Python con Programación Orientada a Objetos (POO).
+Sistema completo de gestión de restaurante desarrollado con Python, SQLAlchemy ORM y PostgreSQL (Neon). Incluye autenticación de usuarios, gestión de reservas, mesas, menús y categorías.
 
-## Características del Proyecto
+## 🚀 Características Principales
 
-### Conceptos de POO Implementados
+- **Autenticación segura** con hash de contraseñas
+- **Base de datos PostgreSQL** con Neon
+- **ORM SQLAlchemy** para manejo de datos
+- **UUIDs** como identificadores primarios
+- **Interfaz de consola** interactiva
+- **Operaciones CRUD** completas
+- **Validaciones robustas** de datos
 
-1. **Herencia**: La clase `SistemaReservas` hereda de `Restaurante`
-2. **Polimorfismo**: Sobrescritura de métodos como `validar_reservas()` y `agregar_reserva()`
-3. **Sobrecarga de Métodos**: Múltiples versiones del método `agregar_reserva()`
-4. **Encapsulamiento**: Uso de métodos privados como `_validar_datos_reserva()`
-
-### Funcionalidades del Sistema
-
-- **Realizar Reservas**: Crear nuevas reservas con validación de datos
-- **Validar Reservas**: Mostrar todas las reservas existentes
-- **Eliminar Reservas**: Eliminar reservas por posición
-- **Modificar Reservas**: Editar datos de reservas existentes
-- **Estadísticas**: Mostrar información estadística de las reservas
-- **Horarios Disponibles**: Ver horarios disponibles para reservas
-
-## Estructura del Proyecto
-
-```
-Restaurante_SW/
-├── reserva.py              # Clase Reserva
-├── restaurante.py          # Clase base Restaurante
-├── sistema_reservas.py     # Clase SistemaReservas (hereda de Restaurante)
-├── main.py                 # Programa principal con menú interactivo
-└── README.md               # Este archivo
-```
-
-## Clases del Sistema
-
-### Clase Reserva
-- Maneja los datos individuales de cada reserva
-- Incluye ID único, nombre, hora y método de pago
-- Método para modificar datos de la reserva
-
-### Clase Restaurante
-- Clase base que maneja operaciones básicas de reservas
-- Validación de datos de entrada
-- Gestión del array de reservas
-
-### Clase SistemaReservas
-- Hereda de Restaurante
-- Implementa funcionalidades adicionales
-- Sobrescribe métodos de la clase padre
-- Maneja horarios disponibles y estadísticas
-
-## Cómo Ejecutar
-
-1. Asegúrate de tener Python instalado en tu sistema
-2. Navega al directorio del proyecto
-3. Ejecuta el archivo principal:
-
-```bash
-python main.py
-```
-
-## Uso del Sistema
-
-### Menú Principal
-El sistema presenta un menú interactivo con las siguientes opciones:
-
-1. **Realizar Reserva**: Crear una nueva reserva
-2. **Validar Reservas**: Ver todas las reservas existentes
-3. **Eliminar Reserva**: Eliminar una reserva por posición
-4. **Modificar Reserva**: Editar datos de una reserva existente
-5. **Mostrar Estadísticas**: Ver estadísticas de las reservas
-6. **Mostrar Horarios Disponibles**: Ver horarios disponibles
-0. **Salir**: Terminar el programa
-
-### Datos de Reserva
-
-- **Nombre completo**: Solo texto (string)
-- **Hora**: Número entero de 9 a 22 (9 AM a 10 PM)
-- **Método de pago**: 
-  - efectivo
-  - transferencia
-  - tarjeta credito
-
-### Validaciones
-
-- El nombre no puede estar vacío
-- La hora debe estar entre 9 y 22
-- Solo se aceptan los métodos de pago especificados
-- Las reservas se identifican por posición en el array y por ID único
-
-## Notas Técnicas
-
-- **Persistencia**: Los datos se mantienen solo en memoria durante la ejecución
-- **Manejo de Errores**: Validaciones básicas sin uso de try-catch
-- **Interfaz**: Menú por consola con navegación numérica
-- **Identificación**: Cada reserva tiene un ID único y una posición en el array
-
-## Ejemplo de Uso
-
-```
-=== SISTEMA DE RESERVAS - RESTAURANTE ===
-1. Realizar Reserva
-2. Validar Reservas
-3. Eliminar Reserva
-4. Modificar Reserva
-5. Mostrar Estadísticas
-6. Mostrar Horarios Disponibles
-0. Salir
-==================================================
-
-Seleccione una opción: 1
-
---- REALIZAR RESERVA ---
-Ingrese el nombre completo: Juan Pérez
-Ingrese la hora (9-22): 19
-
-Métodos de pago disponibles:
-1. efectivo
-2. transferencia
-3. tarjeta credito
-Ingrese el método de pago: efectivo
-
-¡Reserva creada exitosamente!
-ID de reserva: 1
-```
-
-## Autor
-
-Sistema desarrollado como proyecto de demostración de conceptos de POO en Python.
-=======
-## Desarrolladores
+## 👥 Desarrolladores
 
 - **Juan David Hincapie Puerta**
-- **David Usuga** 
+- **David Usuga**
 - **Yulieth Marcela Quintero**
 
-
-## Uso del Sistema
-### Menú Principal
-El sistema presenta un menú interactivo con las siguientes opciones:
-
-1. **Realizar Reserva**: Crear una nueva reserva
-2. **Validar Reservas**: Ver todas las reservas existentes
-3. **Eliminar Reserva**: Eliminar una reserva por posición
-4. **Modificar Reserva**: Editar datos de una reserva existente
-5. **Mostrar Estadísticas**: Ver estadísticas de las reservas
-6. **Mostrar Horarios Disponibles**: Ver horarios disponibles
-0. **Salir**: Terminar el programa
-
-## Ejemplo de Uso
+## 📁 Estructura del Proyecto
 
 ```
-=== SISTEMA DE RESERVAS - RESTAURANTE ===
-1. Realizar Reserva
-2. Validar Reservas
-3. Eliminar Reserva
-4. Modificar Reserva
-5. Mostrar Estadísticas
-6. Mostrar Horarios Disponibles
-0. Salir
-==================================================
-
-Seleccione una opción: 1
-
---- REALIZAR RESERVA ---
-Ingrese el nombre completo: Juan Pérez
-Ingrese la hora (9-22): 19
-
-Métodos de pago disponibles:
-1. efectivo
-2. transferencia
-3. tarjeta credito
-Ingrese el método de pago: efectivo
-
-¡Reserva creada exitosamente!
-ID de reserva: 1
+restaurante_proyecto-5/
+├── auth/
+│   └── security.py              # Gestión segura de contraseñas
+├── crud/
+│   ├── usuario_crud.py          # Operaciones CRUD para usuarios
+│   ├── restaurante_crud.py      # Operaciones CRUD para restaurantes
+│   ├── mesa_crud.py             # Operaciones CRUD para mesas
+│   ├── reserva_crud.py          # Operaciones CRUD para reservas
+│   ├── categoria_crud.py        # Operaciones CRUD para categorías
+│   └── menu_crud.py             # Operaciones CRUD para menús
+├── database/
+│   ├── config.py                # Configuración de base de datos
+│   ├── init_db.py               # Inicialización de BD
+│   └── models/
+│       ├── usuario.py           # Modelo Usuario
+│       ├── restaurante.py       # Modelo Restaurante
+│       ├── mesa.py              # Modelo Mesa
+│       ├── reserva.py           # Modelo Reserva
+│       ├── categoria.py         # Modelo Categoría
+│       └── menu.py              # Modelo Menú
+├── main.py                      # Sistema principal con autenticación
+├── requirements.txt             # Dependencias del proyecto
+├── .env                         # Variables de entorno (crear desde env_example.txt)
+├── .gitignore                   # Archivos a ignorar en Git
+└── README.md                    # Este archivo
 ```
 
+## 🗄️ Base de Datos
 
-## 🚀 Guía Rápida para Entender el Proyecto
+### Entidades Implementadas
 
-### **Paso 1: Entender la Estructura (5 minutos)**
-Mira estos archivos como si fueran personas trabajando en un restaurante:
+1. **Usuario** - Gestión de usuarios del sistema
+2. **Restaurante** - Información de restaurantes
+3. **Mesa** - Mesas disponibles en el restaurante
+4. **Reserva** - Reservas de clientes
+5. **Categoría** - Categorías de menú
+6. **Menú** - Items del menú del restaurante
 
-- **`reserva.py`** = El mesero que toma la orden (guarda datos básicos)
-- **`restaurante.py`** = El gerente que maneja todo (clase principal)
-- **`sistema_reservas.py`** = El supervisor que agrega reglas especiales
-- **`main.py`** = La recepción donde llegan los clientes (interfaz)
+### Características de la Base de Datos
 
-### **Paso 2: Entender el Flujo (3 minutos)**
-1. Cliente llega → `main.py` (recepcionista)
-2. Recepcionista llama → `sistema_reservas.py` (supervisor)
-3. Supervisor verifica → `restaurante.py` (gerente)
-4. Gerente crea → `reserva.py` (mesero guarda la orden)
+- **UUIDs** como identificadores primarios
+- **Columnas de auditoría**: `fecha_creacion`, `fecha_edicion`
+- **Relaciones** entre entidades con claves foráneas
+- **Validaciones** a nivel de base de datos
 
-### **Paso 3: Ejecutar y Probar (2 minutos)**
+## 🛠️ Instalación y Configuración
 
-#### **Opción A: Git Bash (Recomendado)**
+### Prerrequisitos
+
+- Python 3.8 o superior
+- Cuenta en Neon (PostgreSQL)
+- Git
+
+### Pasos de Instalación
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd restaurante_proyecto-5
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configurar variables de entorno**
+   ```bash
+   # Copiar el archivo de ejemplo
+   cp env_example.txt .env
+   
+   # Editar .env con tu URL de Neon
+   # DATABASE_URL=postgresql://usuario:password@host:port/database
+   ```
+
+4. **Inicializar la base de datos**
+   ```bash
+   python -c "from database.config import create_tables; create_tables()"
+   ```
+
+## 🚀 Cómo Ejecutar
+
 ```bash
-# 1. Abre Git Bash en la carpeta del proyecto
-cd /TU RUTA/Restaurante_SW/restaurante_proyecto
-
-# 2. Ejecuta el proyecto
 python main.py
->>>>>>> 903bf758932188eb7a1a940015432c3b9b7dc158
+```
+
+## 📋 Funcionalidades del Sistema
+
+### Sistema de Autenticación
+
+- **Login** con nombre de usuario o email
+- **Validación** de credenciales
+- **Gestión de sesiones**
+- **Contraseñas seguras** con hash
+
+### Gestión de Usuarios
+
+- ✅ **Crear usuarios** con validaciones
+- ✅ **Listar usuarios** registrados
+- ✅ **Buscar usuarios** por email o nombre
+- ✅ **Actualizar usuarios** existentes
+- ✅ **Eliminar usuarios** del sistema
+- ✅ **Crear administrador** por defecto
+
+### Lógica de Negocio
+
+- **Validaciones robustas** de datos de entrada
+- **Manejo de errores** apropiado
+- **Operaciones CRUD** completas
+- **Relaciones** entre entidades
+
+## 🎯 Uso del Sistema
+
+### Menú Principal
+
+```
+==================================================
+        SISTEMA DE GESTION DE RESTAURANTE
+==================================================
+Usuario: [Nombre del Usuario]
+Email: [email@ejemplo.com]
+Administrador
+==================================================
+1. Gestión de Usuarios
+0. Cerrar Sesión
+==================================================
+```
+
+### Gestión de Usuarios
+
+```
+--- GESTIÓN DE USUARIOS ---
+1. Crear Usuario
+2. Listar Usuarios
+3. Buscar Usuario por Email
+4. Buscar Usuario por Nombre de Usuario
+5. Actualizar Usuario
+6. Eliminar Usuario
+7. Crear Usuario Administrador por Defecto
+0. Volver al menú principal
+```
+
+## 🔧 Tecnologías Utilizadas
+
+- **Python 3.12**
+- **SQLAlchemy 2.0.23** - ORM
+- **PostgreSQL** - Base de datos (Neon)
+- **psycopg** - Driver de PostgreSQL
+- **python-dotenv** - Variables de entorno
+
+## 📊 Arquitectura del Sistema
+
+### Patrón de Diseño
+
+- **CRUD Pattern** - Operaciones de base de datos
+- **Repository Pattern** - Separación de lógica de datos
+- **MVC Pattern** - Separación de responsabilidades
+
+### Seguridad
+
+- **Hash de contraseñas** con salt
+- **Validación de entrada** robusta
+- **Manejo seguro** de sesiones
+- **Conexiones SSL** a la base de datos
+
+## 🧪 Validaciones Implementadas
+
+### Usuarios
+
+- Email válido y único
+- Nombre de usuario único
+- Contraseña segura (8+ caracteres, mayúsculas, minúsculas, números, símbolos)
+- Teléfono con formato válido
+- Campos obligatorios
+
+### Base de Datos
+
+- **UUIDs** únicos
+- **Claves foráneas** válidas
+- **Restricciones** de integridad
+- **Índices** para rendimiento
+
+## 📝 Notas Técnicas
+
+- **Persistencia**: Datos almacenados en PostgreSQL (Neon)
+- **Manejo de Errores**: Validaciones completas con mensajes informativos
+- **Interfaz**: Menú por consola con navegación intuitiva
+- **Identificación**: UUIDs únicos para todas las entidades
+- **Auditoría**: Fechas de creación y edición automáticas
+
+## 🔮 Funcionalidades Futuras
+
+- Gestión completa de reservas
+- Sistema de menús y categorías
+- Gestión de mesas
+- Reportes y estadísticas
+- Interfaz web (opcional)
+
+## 📄 Licencia
+
+Proyecto desarrollado para fines académicos.
+
+---
+
+**Desarrollado con ❤️ por el equipo de desarrollo**

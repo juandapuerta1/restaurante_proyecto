@@ -1,1 +1,3 @@
-# Paquete de modelos de base de datos
+"""
+Paquete de modelos de base de datos
+"""

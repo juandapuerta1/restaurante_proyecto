@@ -24,7 +24,6 @@ class Categoria(Base):
     fecha_creacion = Column(DateTime(timezone=True), server_default=func.now())
     fecha_edicion = Column(DateTime(timezone=True), onupdate=func.now())
 
-    # Relaciones
     menus = relationship("Menu", back_populates="categoria")
 
     def __repr__(self):
