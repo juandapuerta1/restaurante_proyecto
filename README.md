@@ -1,206 +1,187 @@
-<<<<<<< HEAD
-# Sistema de Reservas para Restaurante
+# 🧠 Sistema de Gestión API – FastAPI + SQLAlchemy
 
-Este proyecto implementa un sistema completo de gestión de reservas para un restaurante utilizando Python con Programación Orientada a Objetos (POO).
+Este proyecto implementa una **API REST** para gestionar usuarios y categorías, utilizando **FastAPI**, **SQLAlchemy** y **PostgreSQL** (Neon.tech como servicio de base de datos).
 
-## Características del Proyecto
+Incluye endpoints para **crear, listar, actualizar y eliminar usuarios y categorías**, además de autenticación básica de usuarios.
 
-### Conceptos de POO Implementados
+---
 
-1. **Herencia**: La clase `SistemaReservas` hereda de `Restaurante`
-2. **Polimorfismo**: Sobrescritura de métodos como `validar_reservas()` y `agregar_reserva()`
-3. **Sobrecarga de Métodos**: Múltiples versiones del método `agregar_reserva()`
-4. **Encapsulamiento**: Uso de métodos privados como `_validar_datos_reserva()`
+## 🚀 Tecnologías principales
 
-### Funcionalidades del Sistema
+- **Python 3.10+**
+- **FastAPI** (Framework backend)
+- **SQLAlchemy ORM**
+- **Pydantic v2** (modelos y validación)
+- **Uvicorn** (servidor ASGI)
+- **PostgreSQL (Neon.tech)** (base de datos)
+- **dotenv** (manejo de variables de entorno)
 
-- **Realizar Reservas**: Crear nuevas reservas con validación de datos
-- **Validar Reservas**: Mostrar todas las reservas existentes
-- **Eliminar Reservas**: Eliminar reservas por posición
-- **Modificar Reservas**: Editar datos de reservas existentes
-- **Estadísticas**: Mostrar información estadística de las reservas
-- **Horarios Disponibles**: Ver horarios disponibles para reservas
+---
 
-## Estructura del Proyecto
+## 📁 Estructura del proyecto
 
 ```
-Restaurante_SW/
-├── reserva.py              # Clase Reserva
-├── restaurante.py          # Clase base Restaurante
-├── sistema_reservas.py     # Clase SistemaReservas (hereda de Restaurante)
-├── main.py                 # Programa principal con menú interactivo
-└── README.md               # Este archivo
+project/
+│
+├── api/
+│   ├── routes/
+│   │   ├── usuarios.py           # Endpoints de usuarios
+│   │   ├── categorias.py         # Endpoints de categorías
+│   │   └── __init__.py
+│   ├── schemas/
+│   │   ├── usuario_schema.py     # Esquemas Pydantic para usuarios
+│   │   └── categoria_schema.py   # Esquemas Pydantic para categorías
+│
+├── crud/
+│   ├── usuario_crud.py           # Lógica CRUD para usuarios
+│   ├── categoria_crud.py         # Lógica CRUD para categorías
+│
+├── database/
+│   ├── config.py                 # Configuración y conexión con la BD
+│   ├── models.py                 # Modelos SQLAlchemy
+│
+├── main.py                       # Punto de entrada principal
+├── requirements.txt              # Dependencias del proyecto
+└── README.md                     # Este archivo
 ```
 
-## Clases del Sistema
+---
 
-### Clase Reserva
-- Maneja los datos individuales de cada reserva
-- Incluye ID único, nombre, hora y método de pago
-- Método para modificar datos de la reserva
+## ⚙️ Instalación y ejecución del proyecto
 
-### Clase Restaurante
-- Clase base que maneja operaciones básicas de reservas
-- Validación de datos de entrada
-- Gestión del array de reservas
-
-### Clase SistemaReservas
-- Hereda de Restaurante
-- Implementa funcionalidades adicionales
-- Sobrescribe métodos de la clase padre
-- Maneja horarios disponibles y estadísticas
-
-## Cómo Ejecutar
-
-1. Asegúrate de tener Python instalado en tu sistema
-2. Navega al directorio del proyecto
-3. Ejecuta el archivo principal:
+### 🧩 1. Clonar el repositorio
 
 ```bash
-python main.py
+git clone https://github.com/tu-usuario/tu-repositorio.git
+cd tu-repositorio
 ```
 
-## Uso del Sistema
+---
 
-### Menú Principal
-El sistema presenta un menú interactivo con las siguientes opciones:
+### 🐍 2. Crear y activar un entorno virtual
 
-1. **Realizar Reserva**: Crear una nueva reserva
-2. **Validar Reservas**: Ver todas las reservas existentes
-3. **Eliminar Reserva**: Eliminar una reserva por posición
-4. **Modificar Reserva**: Editar datos de una reserva existente
-5. **Mostrar Estadísticas**: Ver estadísticas de las reservas
-6. **Mostrar Horarios Disponibles**: Ver horarios disponibles
-0. **Salir**: Terminar el programa
-
-### Datos de Reserva
-
-- **Nombre completo**: Solo texto (string)
-- **Hora**: Número entero de 9 a 22 (9 AM a 10 PM)
-- **Método de pago**: 
-  - efectivo
-  - transferencia
-  - tarjeta credito
-
-### Validaciones
-
-- El nombre no puede estar vacío
-- La hora debe estar entre 9 y 22
-- Solo se aceptan los métodos de pago especificados
-- Las reservas se identifican por posición en el array y por ID único
-
-## Notas Técnicas
-
-- **Persistencia**: Los datos se mantienen solo en memoria durante la ejecución
-- **Manejo de Errores**: Validaciones básicas sin uso de try-catch
-- **Interfaz**: Menú por consola con navegación numérica
-- **Identificación**: Cada reserva tiene un ID único y una posición en el array
-
-## Ejemplo de Uso
-
-```
-=== SISTEMA DE RESERVAS - RESTAURANTE ===
-1. Realizar Reserva
-2. Validar Reservas
-3. Eliminar Reserva
-4. Modificar Reserva
-5. Mostrar Estadísticas
-6. Mostrar Horarios Disponibles
-0. Salir
-==================================================
-
-Seleccione una opción: 1
-
---- REALIZAR RESERVA ---
-Ingrese el nombre completo: Juan Pérez
-Ingrese la hora (9-22): 19
-
-Métodos de pago disponibles:
-1. efectivo
-2. transferencia
-3. tarjeta credito
-Ingrese el método de pago: efectivo
-
-¡Reserva creada exitosamente!
-ID de reserva: 1
+#### En Windows (PowerShell):
+```bash
+python -m venv venv
+venv\Scripts\activate
 ```
 
-## Autor
+#### En macOS/Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-Sistema desarrollado como proyecto de demostración de conceptos de POO en Python.
-=======
-## Desarrolladores
+---
 
-- **Juan David Hincapie Puerta**
-- **David Usuga** 
+### 📦 3. Instalar las dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 🗃️ 4. Configurar variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+
+```bash
+DATABASE_URL=postgresql://neondb_owner:npg_T8YDJWb9ovOL@ep-floral-bar-adafmaz6-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+```
+
+> ⚠️ **Importante:**
+> - No compartas esta URL en repositorios públicos.
+> - Puedes usar una variable de entorno local (`os.getenv("DATABASE_URL")`) en tu configuración de conexión.
+
+---
+
+### 🧠 5. Crear las tablas en la base de datos
+
+Ejecuta este comando en una consola de Python dentro del proyecto:
+
+```bash
+python
+```
+
+Luego dentro del intérprete:
+
+```python
+from database.config import Base, engine
+Base.metadata.create_all(bind=engine)
+exit()
+```
+
+Esto generará las tablas necesarias en tu base de datos Neon.
+
+---
+
+### 🚀 6. Ejecutar el servidor FastAPI
+
+```bash
+uvicorn main:app --reload
+```
+
+Verás algo como:
+
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000
+```
+
+---
+
+## 🌐 Endpoints principales
+
+Una vez el servidor esté corriendo, puedes abrir tu navegador en:
+
+👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
+Ahí encontrarás la **documentación interactiva Swagger UI** generada automáticamente.
+
+### 🔸 Usuarios
+- `POST /usuarios/` → Crear usuario
+- `GET /usuarios/` → Listar usuarios
+- `GET /usuarios/{id}` → Obtener usuario por ID
+- `PUT /usuarios/{id}` → Actualizar usuario
+- `DELETE /usuarios/{id}` → Eliminar usuario
+- `POST /usuarios/login` → Iniciar sesión
+
+### 🔸 Categorías
+- `POST /categorias/` → Crear categoría
+- `GET /categorias/` → Listar categorías
+- `GET /categorias/{id}` → Obtener categoría por ID
+- `PUT /categorias/{id}` → Actualizar categoría
+- `DELETE /categorias/{id}` → Eliminar categoría
+
+---
+
+## 🧪 Ejemplo de prueba rápida con `curl`
+
+```bash
+curl -X POST "http://127.0.0.1:8000/usuarios/" ^
+  -H "Content-Type: application/json" ^
+  -d "{
+    \"nombre\": \"Laura\",
+    \"apellido\": \"Rojas\",
+    \"nombre_usuario\": \"lauraro\",
+    \"email\": \"laura@example.com\",
+    \"telefono\": \"+573142223344\",
+    \"es_admin\": false,
+    \"contrasena\": \"ClaveSegura2025!\"
+  }"
+```
+
+---
+
+## 👩‍💻 Desarrolladores
+
+- **Juan David Hincapié Puerta**
+- **David Usuga**
 - **Yulieth Marcela Quintero**
 
+---
 
-## Uso del Sistema
-### Menú Principal
-El sistema presenta un menú interactivo con las siguientes opciones:
+## 📜 Licencia
 
-1. **Realizar Reserva**: Crear una nueva reserva
-2. **Validar Reservas**: Ver todas las reservas existentes
-3. **Eliminar Reserva**: Eliminar una reserva por posición
-4. **Modificar Reserva**: Editar datos de una reserva existente
-5. **Mostrar Estadísticas**: Ver estadísticas de las reservas
-6. **Mostrar Horarios Disponibles**: Ver horarios disponibles
-0. **Salir**: Terminar el programa
-
-## Ejemplo de Uso
-
-```
-=== SISTEMA DE RESERVAS - RESTAURANTE ===
-1. Realizar Reserva
-2. Validar Reservas
-3. Eliminar Reserva
-4. Modificar Reserva
-5. Mostrar Estadísticas
-6. Mostrar Horarios Disponibles
-0. Salir
-==================================================
-
-Seleccione una opción: 1
-
---- REALIZAR RESERVA ---
-Ingrese el nombre completo: Juan Pérez
-Ingrese la hora (9-22): 19
-
-Métodos de pago disponibles:
-1. efectivo
-2. transferencia
-3. tarjeta credito
-Ingrese el método de pago: efectivo
-
-¡Reserva creada exitosamente!
-ID de reserva: 1
-```
-
-
-## 🚀 Guía Rápida para Entender el Proyecto
-
-### **Paso 1: Entender la Estructura (5 minutos)**
-Mira estos archivos como si fueran personas trabajando en un restaurante:
-
-- **`reserva.py`** = El mesero que toma la orden (guarda datos básicos)
-- **`restaurante.py`** = El gerente que maneja todo (clase principal)
-- **`sistema_reservas.py`** = El supervisor que agrega reglas especiales
-- **`main.py`** = La recepción donde llegan los clientes (interfaz)
-
-### **Paso 2: Entender el Flujo (3 minutos)**
-1. Cliente llega → `main.py` (recepcionista)
-2. Recepcionista llama → `sistema_reservas.py` (supervisor)
-3. Supervisor verifica → `restaurante.py` (gerente)
-4. Gerente crea → `reserva.py` (mesero guarda la orden)
-
-### **Paso 3: Ejecutar y Probar (2 minutos)**
-
-#### **Opción A: Git Bash (Recomendado)**
-```bash
-# 1. Abre Git Bash en la carpeta del proyecto
-cd /TU RUTA/Restaurante_SW/restaurante_proyecto
-
-# 2. Ejecuta el proyecto
-python main.py
->>>>>>> 903bf758932188eb7a1a940015432c3b9b7dc158
+Este proyecto está bajo la licencia MIT.
+Puedes usarlo, modificarlo y distribuirlo libremente, citando a los autores.
