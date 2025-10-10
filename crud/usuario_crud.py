@@ -205,3 +205,17 @@ class UsuarioCRUD:
     def es_admin(self, usuario_id: UUID) -> bool:
         usuario = self.obtener_usuario(usuario_id)
         return usuario.es_admin if usuario else False
+
+    def obtener_admin_por_defecto(self) -> Optional[Usuario]:
+        """
+        Obtener el usuario admin por defecto
+        """
+        return (
+            self.db.query(Usuario)
+            .filter(
+                Usuario.nombre_usuario == "admin",
+                Usuario.es_admin == True,
+                Usuario.activo == True,
+            )
+            .first()
+        )
