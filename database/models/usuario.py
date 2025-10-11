@@ -28,8 +28,8 @@ class Usuario(Base):
     fecha_edicion = Column(DateTime(timezone=True), onupdate=func.now())
 
     # Relaciones
-    # reservas = relationship("Reserva", back_populates="usuario")
-    # restaurantes = relationship("Restaurante", back_populates="usuario_admin")
+    reservas = relationship("Reserva", back_populates="usuario")
+    restaurantes = relationship("Restaurante", back_populates="usuario_admin")
 
     def __repr__(self):
         return (
