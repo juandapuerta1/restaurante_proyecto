@@ -43,15 +43,15 @@ app = FastAPI(
     title="Sistema de Gestión de Restaurante",
     description="API REST para gestionar restaurantes, reservas, menús y más",
     version="1.0.0",
-    docs_url="/docs",  # Swagger UI en /docs
-    redoc_url="/redoc",  # ReDoc en /redoc
+    docs_url="/docs",
+    redoc_url="/redoc",
     lifespan=lifespan,
 )
 
-# Configurar CORS (permitir peticiones desde el frontend)
+# Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción, especifica los dominios permitidos
+    allow_origins=["*"],  # En producción, especifica dominios permitidos
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -72,10 +72,10 @@ async def root():
         "endpoints_disponibles": {
             "usuarios": "/usuarios",
             "categorias": "/categorias",
-            "restaurantes": "/restaurantes (próximamente)",
-            "mesas": "/mesas (próximamente)",
-            "reservas": "/reservas (próximamente)",
-            "menu": "/menu (próximamente)",
+            "restaurantes": "/restaurantes",
+            "mesas": "/mesas",
+            "menus": "/menus",
+            "reservas": "/reservas",
         },
     }
 
@@ -92,7 +92,10 @@ async def health_check():
     }
 
 
-# Incluir routers de endpoints
+# ======================
+#   CARGA DE ENDPOINTS
+# ======================
+
 try:
     from api.endpoints import usuarios
 
@@ -109,20 +112,45 @@ try:
 except Exception as e:
     print(f"⚠️ No se pudo cargar router de categorías: {e}")
 
-# Cuando crees los demás endpoints, los incluyes así:
-# try:
-#     from api.endpoints import restaurantes
-#     app.include_router(restaurantes.router)
-# except Exception as e:
-#     print(f"⚠️ No se pudo cargar router de restaurantes: {e}")
+try:
+    from api.endpoints import restaurantes
+
+    app.include_router(restaurantes.router)
+    print("✅ Router de restaurantes cargado")
+except Exception as e:
+    print(f"⚠️ No se pudo cargar router de restaurantes: {e}")
+
+try:
+    from api.endpoints import mesas
+
+    app.include_router(mesas.router)
+    print("✅ Router de mesas cargado")
+except Exception as e:
+    print(f"⚠️ No se pudo cargar router de mesas: {e}")
+
+try:
+    from api.endpoints import menu
+
+    app.include_router(menu.router)
+    print("✅ Router de menús cargado")
+except Exception as e:
+    print(f"⚠️ No se pudo cargar router de menús: {e}")
+
+try:
+    from api.endpoints import reservas
+
+    app.include_router(reservas.router)
+    print("✅ Router de reservas cargado")
+except Exception as e:
+    print(f"⚠️ No se pudo cargar router de reservas: {e}")
 
 
-# Configuración de Uvicorn para ejecutar la aplicación
+# Configuración de Uvicorn
 if __name__ == "__main__":
     uvicorn.run(
-        "main:app",  # Archivo:variable
-        host="0.0.0.0",  # Escuchar en todas las interfaces
-        port=8000,  # Puerto
-        reload=True,  # Auto-reload en desarrollo (cambios en código)
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
         log_level="info",
     )

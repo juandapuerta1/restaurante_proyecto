@@ -1,8 +1,7 @@
-# 🧠 Sistema de Gestión API – FastAPI + SQLAlchemy
+# 🍽️ Sistema de Gestión de Restaurante – API REST con FastAPI + SQLAlchemy
 
-Este proyecto implementa una **API REST** para gestionar usuarios y categorías, utilizando **FastAPI**, **SQLAlchemy** y **PostgreSQL** (Neon.tech como servicio de base de datos).
-
-Incluye endpoints para **crear, listar, actualizar y eliminar usuarios y categorías**, además de autenticación básica de usuarios.
+Este proyecto implementa una **API RESTful completa** para la gestión de un restaurante, desarrollada con **FastAPI**, **SQLAlchemy** y **PostgreSQL** (Neon.tech como servicio de base de datos).
+Incluye módulos para manejar **usuarios, categorías, menús, mesas, restaurantes y reservas**, con endpoints CRUD y autenticación básica.
 
 ---
 
@@ -11,10 +10,11 @@ Incluye endpoints para **crear, listar, actualizar y eliminar usuarios y categor
 - **Python 3.10+**
 - **FastAPI** (Framework backend)
 - **SQLAlchemy ORM**
-- **Pydantic v2** (modelos y validación)
-- **Uvicorn** (servidor ASGI)
-- **PostgreSQL (Neon.tech)** (base de datos)
-- **dotenv** (manejo de variables de entorno)
+- **Pydantic v2** (Modelos y validación de datos)
+- **Uvicorn** (Servidor ASGI)
+- **PostgreSQL (Neon.tech)** (Base de datos)
+- **dotenv** (Manejo de variables de entorno)
+- **CORS Middleware** (para conexión con frontend)
 
 ---
 
@@ -24,21 +24,39 @@ Incluye endpoints para **crear, listar, actualizar y eliminar usuarios y categor
 project/
 │
 ├── api/
-│   ├── routes/
+│   ├── endpoints/
 │   │   ├── usuarios.py           # Endpoints de usuarios
 │   │   ├── categorias.py         # Endpoints de categorías
-│   │   └── __init__.py
+│   │   ├── menu.py               # Endpoints de menús
+│   │   ├── mesas.py              # Endpoints de mesas
+│   │   ├── restaurantes.py       # Endpoints de restaurantes
+│   │   └── reservas.py           # Endpoints de reservas
+│   │
 │   ├── schemas/
-│   │   ├── usuario_schema.py     # Esquemas Pydantic para usuarios
-│   │   └── categoria_schema.py   # Esquemas Pydantic para categorías
+│   │   ├── usuario_schema.py     # Schemas Pydantic para usuarios
+│   │   ├── categoria_schema.py   # Schemas Pydantic para categorías
+│   │   ├── menu_schema.py        # Schemas Pydantic para menús
+│   │   ├── mesa_schema.py        # Schemas Pydantic para mesas
+│   │   ├── restaurante_schema.py # Schemas Pydantic para restaurantes
+│   │   └── reserva_schema.py     # Schemas Pydantic para reservas
 │
 ├── crud/
 │   ├── usuario_crud.py           # Lógica CRUD para usuarios
 │   ├── categoria_crud.py         # Lógica CRUD para categorías
+│   ├── menu_crud.py              # Lógica CRUD para menús
+│   ├── mesa_crud.py              # Lógica CRUD para mesas
+│   ├── restaurante_crud.py       # Lógica CRUD para restaurantes
+│   └── reserva_crud.py           # Lógica CRUD para reservas
 │
 ├── database/
 │   ├── config.py                 # Configuración y conexión con la BD
-│   ├── models.py                 # Modelos SQLAlchemy
+│   └── models/
+│       ├── usuario.py
+│       ├── categoria.py
+│       ├── menu.py
+│       ├── mesa.py
+│       ├── restaurante.py
+│       └── reserva.py
 │
 ├── main.py                       # Punto de entrada principal
 ├── requirements.txt              # Dependencias del proyecto
@@ -92,19 +110,19 @@ DATABASE_URL=postgresql://neondb_owner:npg_T8YDJWb9ovOL@ep-floral-bar-adafmaz6-p
 
 > ⚠️ **Importante:**
 > - No compartas esta URL en repositorios públicos.
-> - Puedes usar una variable de entorno local (`os.getenv("DATABASE_URL")`) en tu configuración de conexión.
+> - Puedes usar `os.getenv("DATABASE_URL")` dentro de tu configuración en `database/config.py`.
 
 ---
 
 ### 🧠 5. Crear las tablas en la base de datos
 
-Ejecuta este comando en una consola de Python dentro del proyecto:
+Ejecuta este comando en la consola de Python dentro del proyecto:
 
 ```bash
 python
 ```
 
-Luego dentro del intérprete:
+Luego, dentro del intérprete:
 
 ```python
 from database.config import Base, engine
@@ -112,7 +130,7 @@ Base.metadata.create_all(bind=engine)
 exit()
 ```
 
-Esto generará las tablas necesarias en tu base de datos Neon.
+Esto generará todas las tablas necesarias en la base de datos de Neon.tech.
 
 ---
 
@@ -130,32 +148,85 @@ INFO:     Uvicorn running on http://127.0.0.1:8000
 
 ---
 
-## 🌐 Endpoints principales
+## 🌐 Documentación interactiva
 
-Una vez el servidor esté corriendo, puedes abrir tu navegador en:
+Una vez el servidor esté corriendo, abre tu navegador en:
 
-👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-
-Ahí encontrarás la **documentación interactiva Swagger UI** generada automáticamente.
-
-### 🔸 Usuarios
-- `POST /usuarios/` → Crear usuario
-- `GET /usuarios/` → Listar usuarios
-- `GET /usuarios/{id}` → Obtener usuario por ID
-- `PUT /usuarios/{id}` → Actualizar usuario
-- `DELETE /usuarios/{id}` → Eliminar usuario
-- `POST /usuarios/login` → Iniciar sesión
-
-### 🔸 Categorías
-- `POST /categorias/` → Crear categoría
-- `GET /categorias/` → Listar categorías
-- `GET /categorias/{id}` → Obtener categoría por ID
-- `PUT /categorias/{id}` → Actualizar categoría
-- `DELETE /categorias/{id}` → Eliminar categoría
+- **Swagger UI:** 👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **ReDoc:** 👉 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
 ---
 
-## 🧪 Ejemplo de prueba rápida con `curl`
+## 🧠 Endpoints principales
+
+### 👤 Usuarios
+| Método | Endpoint | Descripción |
+|--------|-----------|-------------|
+| `POST` | `/usuarios/` | Crear usuario |
+| `GET` | `/usuarios/` | Listar usuarios |
+| `GET` | `/usuarios/{id}` | Obtener usuario |
+| `PUT` | `/usuarios/{id}` | Actualizar usuario |
+| `DELETE` | `/usuarios/{id}` | Eliminar usuario |
+| `POST` | `/usuarios/login` | Iniciar sesión |
+
+---
+
+### 🏷️ Categorías
+| Método | Endpoint | Descripción |
+|--------|-----------|-------------|
+| `POST` | `/categorias/` | Crear categoría |
+| `GET` | `/categorias/` | Listar categorías |
+| `GET` | `/categorias/{id}` | Obtener categoría |
+| `PUT` | `/categorias/{id}` | Actualizar categoría |
+| `DELETE` | `/categorias/{id}` | Eliminar categoría |
+
+---
+
+### 🍽️ Menús
+| Método | Endpoint | Descripción |
+|--------|-----------|-------------|
+| `POST` | `/menus/` | Crear menú |
+| `GET` | `/menus/` | Listar menús |
+| `GET` | `/menus/{id}` | Obtener menú |
+| `PUT` | `/menus/{id}` | Actualizar menú |
+| `DELETE` | `/menus/{id}` | Eliminar menú |
+
+---
+
+### 🪑 Mesas
+| Método | Endpoint | Descripción |
+|--------|-----------|-------------|
+| `POST` | `/mesas/` | Crear mesa |
+| `GET` | `/mesas/` | Listar mesas |
+| `GET` | `/mesas/{id}` | Obtener mesa |
+| `PUT` | `/mesas/{id}` | Actualizar mesa |
+| `DELETE` | `/mesas/{id}` | Eliminar mesa |
+
+---
+
+### 🏠 Restaurantes
+| Método | Endpoint | Descripción |
+|--------|-----------|-------------|
+| `POST` | `/restaurantes/` | Crear restaurante |
+| `GET` | `/restaurantes/` | Listar restaurantes |
+| `GET` | `/restaurantes/{id}` | Obtener restaurante |
+| `PUT` | `/restaurantes/{id}` | Actualizar restaurante |
+| `DELETE` | `/restaurantes/{id}` | Eliminar restaurante |
+
+---
+
+### 📅 Reservas
+| Método | Endpoint | Descripción |
+|--------|-----------|-------------|
+| `POST` | `/reservas/` | Crear reserva |
+| `GET` | `/reservas/` | Listar reservas |
+| `GET` | `/reservas/{id}` | Obtener reserva |
+| `PUT` | `/reservas/{id}` | Actualizar reserva |
+| `DELETE` | `/reservas/{id}` | Eliminar reserva |
+
+---
+
+## 🧪 Ejemplo de prueba rápida (`curl`)
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/usuarios/" ^
@@ -173,6 +244,46 @@ curl -X POST "http://127.0.0.1:8000/usuarios/" ^
 
 ---
 
+## 💡 Ejemplo de crear una reserva
+
+```json
+POST /reservas/
+{
+  "nombre_completo": "Juan Pérez",
+  "telefono": "3001234567",
+  "email": "juan@example.com",
+  "fecha_reserva": "2025-10-15T19:00:00",
+  "hora_reserva": "19:00",
+  "numero_personas": 4,
+  "metodo_pago": "tarjeta credito",
+  "estado": "pendiente",
+  "observaciones": "Mesa cerca a la ventana",
+  "usuario_id": "b6c3e4d8-1f6b-4e1a-88cb-9b6a0a7f9a44",
+  "restaurante_id": "cf5a742e-8573-42c8-9478-7db2f749bfa1",
+  "mesa_id": "2bb73d92-187a-4204-bfe7-890c9a3a420a"
+}
+```
+
+---
+
+## 🔍 Health check
+
+Verifica el estado del servidor y conexión con la base de datos:
+
+```
+GET /health
+```
+
+**Respuesta esperada:**
+```json
+{
+  "status": "OK",
+  "database": "conectada"
+}
+```
+
+---
+
 ## 👩‍💻 Desarrolladores
 
 - **Juan David Hincapié Puerta**
@@ -183,5 +294,5 @@ curl -X POST "http://127.0.0.1:8000/usuarios/" ^
 
 ## 📜 Licencia
 
-Este proyecto está bajo la licencia MIT.
+Este proyecto está bajo la licencia **MIT**.
 Puedes usarlo, modificarlo y distribuirlo libremente, citando a los autores.
